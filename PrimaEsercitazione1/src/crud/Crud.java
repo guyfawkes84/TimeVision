@@ -1,14 +1,16 @@
 package crud;
 
 import model.Dipendente;
+import view.Vista;
 
 public class Crud implements iCrud {
-    
+
 	private int n;
-	
+	Vista v = new Vista();
+
 	private Dipendente[] dipendenti;
-	
-	
+
+
 	public int getN() {
 		return n;
 	}
@@ -17,26 +19,29 @@ public class Crud implements iCrud {
 		this.n = n;
 	}
 
-	
-	
+
+
 	public void creaVettore(int n) {
 		this.dipendenti=new Dipendente[n];
 	}
-	
+
 	@Override
 	public void inserimento(Dipendente d,int posizione) {
-	this.dipendenti[posizione]=d;	
+		this.dipendenti[posizione]=d;	
 
 	}
 
 	@Override
 	public void modifica(Dipendente d, int posizione) {
 		for(int i=0; i<dipendenti.length; i++){
-			if(dipendenti[i].getId_ruolo()==posizione){
-				//continuare
+			if(dipendenti[i].getSeriale()==d.getSeriale()){
+				//Continuare con maschera modifica
+				v.mascheraDiModificaDipendenti(d);
+
+
 			}
 		}
-		
+
 
 	}
 
@@ -47,13 +52,13 @@ public class Crud implements iCrud {
 				dipendenti[i]=null;
 			}
 		}
-		
+
 
 	}
 
 	@Override
 	public Dipendente visualizza(int pos) {
-		
+
 		return dipendenti[pos];
 	}
 

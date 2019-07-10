@@ -124,6 +124,39 @@ public class Vista {
 			d.setAreaResponsabilita(leggIntero("Inserire area responsabilita"));
 		}
 	}
+	
+	public void mascheraDiModificaDipendenti(Dipendente p) {
+		p.setNome(leggiStringa("Inserire il nome"));
+		p.setCognome(leggiStringa("Inserire il cognome"));
+		p.setSeriale(leggIntero("Inserire il seriale"));
+		boolean flag=false;
+		String s=leggiStringa("Inserire sesso");
+		do {
+			flag=false;
+			if(s.equalsIgnoreCase("f")) {
+				p.setSesso(true);
+			}else if(s.equalsIgnoreCase("m")) {
+				p.setSesso(false);
+			}else {
+				flag=true;	
+
+			}}while(flag);
+		p.setAzienda(leggiStringa("Inserire azienda"));
+		p.setId_ruolo(1);
+		p.setOreLavorative(leggiDouble("Inserire ore"));
+		p.setStipendio(leggiDouble("Inserire stipendio"));
+		if(p instanceof Manager) {
+			Manager m=(Manager) p;
+			p.setId_ruolo(2);
+			m.setBenefit(leggiDouble("Inserire benefit"));
+			m.setLivelloFunzionale(leggIntero("Inserire livello funzionale"));
+		}
+		if(p instanceof Dirigente) {
+			Dirigente d=(Dirigente) p;
+			p.setId_ruolo(3);
+			d.setAreaResponsabilita(leggIntero("Inserire area responsabilita"));
+		}
+	}
 
 	/*
 	 *  ********************************* FINE MASCHERE D'INSERIMENTO *********************************
