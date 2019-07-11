@@ -11,6 +11,7 @@ public class GestioneRistorante {
 	public static void main(String[] args) {
 		Vista v=new Vista();
 		Tavolo t=new Tavolo();
+		Piatto p=new Piatto();
 		
 		ArrayList<Piatto> menu=new ArrayList<Piatto>();
 		
@@ -31,6 +32,8 @@ public class GestioneRistorante {
 		t.setCoperti(v.leggIntero("Inserisci il numero di coperti"));
 		double prezzo = v.stampaMenu(menu)*t.getCoperti();
 		
+		System.out.println("Tavolo: "+ t.getNumero());
+		System.out.println("Coperti: "+ t.getCoperti());
 		System.out.println("Prezzo totale: "+prezzo);
 		
 		}
