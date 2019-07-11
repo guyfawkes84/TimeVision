@@ -1,6 +1,6 @@
 package controller;
 
-import crud.Crud;
+import crud.CrudArrayList;
 import crud.iCrud;
 import model.Dipendente;
 import model.Dirigente;
@@ -15,11 +15,11 @@ public class GestioneDipendenti {
 		//Persona.conta();
 		//Persona.contaPersona=3;
 		Vista v=new Vista();
-		Crud c=new Crud();
+		CrudArrayList c=new CrudArrayList();
 		int scelta;
+		int id;
 		int n=v.leggIntero("Quanti dipendenti vuoi inserire? ");
 
-		c.creaVettore(n);
 		for(int i=0;i<n;i++) {
 			Dipendente d = null;
 			do{
