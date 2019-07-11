@@ -1,6 +1,9 @@
 package view;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import model.Piatto;
 
 public class Vista {
 	private Scanner input=new Scanner(System.in);
@@ -65,8 +68,9 @@ public class Vista {
 	 *  ********************************* MENU PIATTI ************************************
 	 */
 
-	public int stampaMenu() {
-		int scelta=-1;
+	public double stampaMenu(ArrayList<Piatto> menu) {
+		int scelta=-1, d;
+		double somma=0;
 
 		do {
 			System.out.println("************************");
@@ -91,8 +95,16 @@ public class Vista {
 			System.out.println("");
 			System.out.println("0) USCITA DAL MENU.");
 			System.out.println("");
-			scelta=leggIntero("Selezionare un piatto del menu.:");
-		}while(scelta==0);
-		return scelta;
+			scelta=leggIntero("Selezionare un piatto del menu: ");
+			d=scelta;
+			if((scelta<0)||(scelta>10)){
+				System.out.println("Piatto non presente.");
+			}
+			else if(scelta!=0){
+				d--;
+				somma += menu.get(d).getPrezzo();
+			}
+		}while(scelta!=0);
+		return somma;
 	}
 }
