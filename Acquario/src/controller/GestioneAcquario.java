@@ -12,7 +12,6 @@ public class GestioneAcquario {
 		Crud ins = new Crud();
 		Vista v = new Vista();
 		Vasca c = new Vasca();
-		v.leggIntero(c.getNome1());
 	}
 
 }
