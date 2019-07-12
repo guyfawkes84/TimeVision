@@ -11,7 +11,6 @@ public class GestioneRistorante {
 	public static void main(String[] args) {
 		Vista v=new Vista();
 		Tavolo t=new Tavolo();
-		Piatto p=new Piatto();
 		
 		ArrayList<Piatto> menu=new ArrayList<Piatto>();
 		
