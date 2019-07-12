@@ -7,6 +7,7 @@ Workspace/NuovaEsercitazione
 Acquario
 ClasseAstratta
 Ristorante
+PrimaEsercitazione1
 
 # Cartella Obsoleta
 
