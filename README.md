@@ -6,6 +6,7 @@ Esercizi fatti in azienda
 Workspace/NuovaEsercitazione
 Acquario
 ClasseAstratta
+Ristorante
 
 # Cartella Obsoleta
 
