@@ -2,6 +2,7 @@ package model;
 
 public class Vasca {
 	private String nome1="Vasca1";
+	private String nome2="Vasca2";
 	/**
 	 * @return the nome1
 	 */
@@ -26,7 +27,7 @@ public class Vasca {
 	public void setNome2(String nome2) {
 		this.nome2 = nome2;
 	}
-	private String nome2="Vasca2";
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
