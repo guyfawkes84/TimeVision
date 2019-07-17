@@ -90,7 +90,7 @@ public int cercaDip(Dipendente d){
 			e.printStackTrace();
 		} 
 		}else{
-			System.out.println("il file è vuoto!");
+			System.out.println("il file Ã¨ vuoto!");
 		}
 		
 	}

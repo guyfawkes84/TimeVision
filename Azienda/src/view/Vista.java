@@ -15,6 +15,9 @@ import model.Manager;
 public class Vista {
 	private Scanner input=new Scanner(System.in);
 
+	/*
+	 * LEGGI INTERO
+	 */
 	public int leggiIntero(String messaggio){
 		int valore = -1;
 		boolean flag=false;
@@ -30,6 +33,10 @@ public class Vista {
 		return valore;
 
 	}
+	
+	/*
+	 * LEGGI DOUBLE
+	 */
 	public double leggiDouble(String messaggio){
 		double valore = 0.0;
 		boolean flag=false;
@@ -45,6 +52,9 @@ public class Vista {
 		return valore;
 
 	}
+	/*
+	 * LEGGI STRINGA
+	 */
 
 	public String leggiStringa(String messaggio){
 		String stringa="";
@@ -52,7 +62,9 @@ public class Vista {
 		stringa=input.nextLine();
 		return stringa;
 	}
-
+	/*
+	 * MENU CONTESTUALE
+	 */
 	public int menu(){
 		int scelta=0;
 		System.out.println("*******************");
@@ -71,6 +83,10 @@ public class Vista {
 		while(!(scelta>=1 && scelta<=8));
 		return scelta;
 	}
+	
+	/*
+	 * MENU DI INSERIMENTO
+	 */
 	public int menuInserimento(){
 		int scelta=0;
 		System.out.println("*******************");
@@ -84,6 +100,9 @@ public class Vista {
 		}while(!(scelta>=1 && scelta<=3));
 		return scelta;
 	}
+	/*
+	 * MASCHERA D'INSERIMENTO
+	 */
 	public void  mascheraInserimento(Dipendente d){
 		if(d instanceof Dirigente){
 			Dirigente dir=(Dirigente)d;
@@ -146,6 +165,9 @@ public class Vista {
 
 			}
 	}
+	/*
+	 * MASCHERA CERCA
+	 */
 	public Dipendente mascheraCerca(){
 		Dipendente d=new Dipendente();
 		System.out.println("*******CERCA*********");
@@ -154,6 +176,9 @@ public class Vista {
 		return d;
 	}	
 
+	/*
+	 * MASCHERA DI VISUALIZZAZIONE
+	 */
 	public void mascheraVisualizzazione(Dipendente d){
 		System.out.println("*******SCHEDA DIPENDENTE**********");
 		if(d instanceof Dirigente){
@@ -208,6 +233,9 @@ public class Vista {
 		}
 	}
 
+	/*
+	 * CANCELLA
+	 */
 	public boolean cancella(Dipendente d){
 		String conferma;
 		mascheraVisualizzazione(d);
@@ -218,7 +246,9 @@ public class Vista {
 	}
 
 
-
+/*
+ * CONVERTITORE DOUBLE
+ */
 	public double convertiDouble(String s){
 		double valore=0.0;
 		try{
@@ -230,7 +260,9 @@ public class Vista {
 		return valore;
 	} 	
 
-
+/*
+ * MASCHERA DI MODIFICA
+ */
 	public boolean mascheraModifica(Dipendente d){
 		String conferma;
 		String appString;
@@ -452,13 +484,16 @@ public class Vista {
 			return(conferma.equals("S"));
 		}
 			
+	/*
+	 * VISUALIZZA DIPENDENTI TROVATI
+	 */
 		public Dipendente visualizzaDipendentiTrovati(ArrayList<Dipendente> trovati){
 
 			int i=0;
 			int s;
 
 			if(trovati.size()==0){
-				System.out.println("Il dipendente non è stato trovato!");
+				System.out.println("Il dipendente non Ã¨ stato trovato!");
 
 				return null;}
 			else if(trovati.size()==1){
@@ -475,7 +510,9 @@ public class Vista {
 			}
 			return trovati.get(s-1);
 		}
-
+/*
+ * VISUALIZZA AZIENDA
+ */
 
 		public void visualizzaAzienda(ArrayList<Dipendente> azienda){
 
@@ -484,15 +521,21 @@ public class Vista {
 				for(Dipendente d:azienda){
 					System.out.println((++i)+")"+d);
 				}}else{
-					System.out.println("L'azienda è vuota");
+					System.out.println("L'azienda Ã¨ vuota");
 				}	
 		}
+		/*
+		 * ATTESA
+		 */
 		public void attesa(){
 
 			System.out.println("Premi invio per continuare ...");
 			String a=input.nextLine();
 
 		}
+		/*
+		 * CARICA
+		 */
 		public boolean gestioneCarica(ArrayList<Dipendente> azienda) {
 
 			String risposta;
@@ -501,7 +544,7 @@ public class Vista {
 			System.out.println("*  C A R I C A  *");
 			System.out.println("*****************");
 			if(!azienda.isEmpty()) {
-				System.out.println("Attenzione! L'array non è vuoto!");
+				System.out.println("Attenzione! L'array non Ã¨ vuoto!");
 				do{
 					flag=false;
 					risposta = leggiStringa("Confermi comunque il caricamento(s/n)? ");
@@ -516,6 +559,10 @@ public class Vista {
 			}
 			return true;
 		}
+		
+		/*
+		 * SALVATAGGIO
+		 */
 		public boolean gestioneSalvataggio(){
 			String risposta;
 			boolean flag;
