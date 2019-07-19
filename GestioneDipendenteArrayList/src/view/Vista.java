@@ -1,7 +1,6 @@
 package view;
 
 import java.util.Scanner;
-
 import model.Dipendente;
 import model.Dirigente;
 import model.Manager;
@@ -67,11 +66,13 @@ public class Vista {
 		System.out.println("5: ELIMINA");
 		System.out.println("6: SALVA");
 		System.out.println("7: CARICA");
-		System.out.println("8: ESCI");
+		System.out.println("8: SVUOTA TABELLA");
+		System.out.println("9: ROLLBACK");
+		System.out.println("10: ESCI");
 		System.out.println("*************************");
 
 	}
-	
+
 	public void sottoMenu() {
 
 		System.out.println("**********MENU**********");
@@ -81,7 +82,8 @@ public class Vista {
 		System.out.println("*************************");
 
 	}
-	
+
+
 	public void menuVisualizazzione() {
 
 		System.out.println("**********MENU**********");
@@ -90,13 +92,15 @@ public class Vista {
 		System.out.println("*************************");
 
 	}
+	
+
 
 	public void mascheraInserimento(Dipendente d) {
-		d.setId(leggiIntero("Inserisci ID: "));
+		//d.setId(leggiIntero("Inserisci ID: "));
 		d.setNome(leggiStringa("Inserisci il nome: "));
 		d.setCognome(leggiStringa("Inserisci il cognome: "));
 		d.setCodiceFiscale(leggiStringa("Inserisci il Codice Fiscale: "));
-		d.setDataNascita(leggiStringa("Inserisci la data di nascita: "));
+		d.setDataNascita(leggiStringa("Inserisci la data di nascita FORMATO (YYYY-MM-DD): "));
 
 		String s;
 		do {
@@ -112,13 +116,14 @@ public class Vista {
 		d.setNomeAzienda(leggiStringa("Inserisci il nome dell'Azienda: "));
 		d.setStipendio(leggiDouble("Inserisci lo stipendio: "));
 		d.setOreLavorative(leggiDouble("Inserisci le ore lavorative"));
-		d.setId_ruolo(1);
+		//d.setId_ruolo(1);
+		
 		
 		if(d instanceof Manager) {
 			Manager man = (Manager) d;
 			man.setLivello_funzionale(leggiStringa("Inserisci Livello Funzionale: "));
 			man.setId_ruolo(2);
-			
+
 			if (d instanceof Dirigente) {
 				Dirigente dir = (Dirigente) d;
 				dir.setArea_funzionalita(leggiStringa("Inserisci Area Funzionale: "));
@@ -202,11 +207,11 @@ public class Vista {
 					y=Double.parseDouble(app);
 					dn.setStipendio(y);
 				}
-					else {dn.setStipendio(dn.getStipendio());}
-				}catch(NumberFormatException e) {
-					System.out.println("Inserisci il numero");
-					flag=true;
-				}}
+				else {dn.setStipendio(dn.getStipendio());}
+			}catch(NumberFormatException e) {
+				System.out.println("Inserisci il numero");
+				flag=true;
+			}}
 		while(flag);
 		do {
 
@@ -225,7 +230,7 @@ public class Vista {
 			}}
 		while(flag);
 		dn.setId_ruolo(1);
-		
+
 		if(dn instanceof Manager) {
 			Manager man=(Manager) dn;
 			if(d instanceof Manager) {
@@ -240,55 +245,55 @@ public class Vista {
 			} 
 			else {
 				do {
-				app=leggiStringa("Livello Funzionale: " + "[Vuoto]");
-				if(app.equals("")){
-					System.out.println("Questo campo non può essere vuoto");
-				}else {
-				man.setLivello_funzionale(app);
-				}
+					app=leggiStringa("Livello Funzionale: " + "[Vuoto]");
+					if(app.equals("")){
+						System.out.println("Questo campo non puï¿½ essere vuoto");
+					}else {
+						man.setLivello_funzionale(app);
+					}
 				}while(app.equals(""));
 			}
-			
+
 			man.setId_ruolo(2);
 		}
-		
+
 		if(dn instanceof Dirigente) {
 			Dirigente dir=(Dirigente) dn;
 			if(d instanceof Dirigente) {
 				Dirigente dir1=(Dirigente) d;
-			app=leggiStringa("Area Funzionale: " + "["+ dir1.getArea_funzionalita() +"]");
-			if(!app.equals("")) {
-				dir.setArea_funzionalita(app);
-			} else {
-				dir.setArea_funzionalita(dir1.getArea_funzionalita());
-			}
+				app=leggiStringa("Area Funzionale: " + "["+ dir1.getArea_funzionalita() +"]");
+				if(!app.equals("")) {
+					dir.setArea_funzionalita(app);
+				} else {
+					dir.setArea_funzionalita(dir1.getArea_funzionalita());
+				}
 			}
 			else {
 				do {
-				app=leggiStringa("Area Funzionale: " + "[Vuoto]");
-				if(app.equals("")){
-					System.out.println("Questo campo non può essere vuoto");
-				}else {
-				dir.setArea_funzionalita(app);
+					app=leggiStringa("Area Funzionale: " + "[Vuoto]");
+					if(app.equals("")){
+						System.out.println("Questo campo non puï¿½ essere vuoto");
+					}else {
+						dir.setArea_funzionalita(app);
+					}
+				}while(app.equals(""));
+
 			}
-			}while(app.equals(""));
-			
-		}
 			dir.setId_ruolo(3);
 		}
 
 		return dn;
 	}
-	
+
 	public String confermaEliminazione(String mess) {
-		
+
 		String s;
-		
+
 		do {
 			System.out.println(mess);
 			s=sc.nextLine();
 		}while(!(s.toLowerCase().equals("s")||s.toLowerCase().equals("n")));
-		
+
 		if(s.toLowerCase().equals("s")) {
 			System.out.println("Eliminazione in corso...");
 		} else {
@@ -297,12 +302,12 @@ public class Vista {
 
 		return s;
 	}
-	
-public boolean confermaSalvataggio() {
-		
+
+	public boolean confermaSalvataggio() {
+
 		String s;
 		boolean flag;
-		
+
 		do {
 			flag=false;
 			System.out.println("Vuoi salvare? (s/n)");
@@ -313,7 +318,7 @@ public boolean confermaSalvataggio() {
 			}
 		}
 		while(flag);
-		
+
 		if(s.toLowerCase().equals("s")) {
 			System.out.println("Salvataggio in corso...");
 			return true;
@@ -324,28 +329,28 @@ public boolean confermaSalvataggio() {
 
 	}
 
-public boolean confermaCaricamento() {
-	String s;
-	boolean flag;
-		
-	do {
-		flag=false;
-		System.out.println("Confermi il caricamento? (s/n)");
-		s=sc.nextLine();
-		if(!(s.toLowerCase().equals("s")||s.toLowerCase().equals("n"))) {
-			flag=true;
-			System.out.println("Errore, inserire s o n");
-		}
-	}
-	while(flag);
-	
-	if(s.toLowerCase().equals("s")) {
-		System.out.println("Caricamento in corso...");
-		return true;
-	} else {
-		System.out.println("Caricamento Annullato");
-		return false;
-	}
+	public boolean confermaCaricamento() {
+		String s;
+		boolean flag;
 
-}
+		do {
+			flag=false;
+			System.out.println("Confermi il caricamento? (s/n)");
+			s=sc.nextLine();
+			if(!(s.toLowerCase().equals("s")||s.toLowerCase().equals("n"))) {
+				flag=true;
+				System.out.println("Errore, inserire s o n");
+			}
+		}
+		while(flag);
+
+		if(s.toLowerCase().equals("s")) {
+			System.out.println("Caricamento in corso...");
+			return true;
+		} else {
+			System.out.println("Caricamento Annullato");
+			return false;
+		}
+
+	}
 }
