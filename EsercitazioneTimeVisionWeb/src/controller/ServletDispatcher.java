@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Persona;
+import model.dao.Crud;
+
 /**
  * Servlet implementation class ServletDispatcher
  */
@@ -40,50 +43,15 @@ public class ServletDispatcher extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		
-
-		
-		String nome = request.getParameter("nome");
-		if (nome != null) {
-			request.setAttribute("nome", nome);
-		}
-		else{
-			request.setAttribute("nome", "");
-		}
-		String cognome = request.getParameter("cognome");
-		if (cognome != null) {
-			request.setAttribute("cognome", cognome);
-		}
-		else{
-			request.setAttribute("cognome", "");
-		}
-		int eta = Integer.parseInt(request.getParameter("eta"));
-		if (eta <= 0){
-			request.setAttribute("eta", eta);
-		}
-		else{
-			request.setAttribute("eta", "");
-		}
-		String username = request.getParameter("username");
-		if (username != null) {
-			request.setAttribute("username", username);
-		}
-		else{
-			request.setAttribute("username", "");
-		}
-		String password = request.getParameter("password");
-		if (password != null) {
-			request.setAttribute("password", password);
-		}
-		else{
-			request.setAttribute("password", "");
-		}
-		
-		RequestDispatcher view;
-		
-		view = request.getRequestDispatcher("registrazione.jsp");
-		
-		view.forward(request, response);
+		Crud c = new Crud();
+		Persona p = new Persona();
+		p.setNome(request.getParameter("nome"));
+		p.setCognome(request.getParameter("cognome"));
+		p.setEta(Integer.parseInt(request.getParameter("eta")));
+		p.setUsername(request.getParameter("username"));
+		p.setPsw(request.getParameter("psw"));
+		c.registrazione(p);
+		response.sendRedirect("success.html");
 	}
 
 }

@@ -38,14 +38,13 @@ public class Crud implements iCrud {
 	}
 
 	public void registrazione(Persona p){
-		System.out.println("Fatto");
 		try{
 			String sql = "INSERT INTO user (nome, cognome, eta, username, password) VALUES (?, ?, ?, ?, ?)";
-			ps = (PreparedStatement) conn.prepareStatement(sql);
+			ps = conn.prepareStatement(sql);
 			ps.setString(1, p.getNome());
 			ps.setString(2, p.getCognome());
 			ps.setInt(3, p.getEta());
-			ps.setInt(4, p.getEta());
+			ps.setString(4, p.getUsername());
 			ps.setString(5, p.getPsw());
 			ps.executeUpdate();
 			System.out.println("Inserimento avvenuto con successo!");
